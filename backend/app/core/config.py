@@ -50,7 +50,12 @@ class Settings(BaseSettings):
     documents_dir: str = os.getenv("DOCUMENTS_DIR", "./data/documents")
     
     # CORS Configuration
-    cors_origins: list = ["http://localhost:5173", "http://localhost:3000"]
+    # Allow all origins in production (Render/Vercel), or specify frontend URL
+    cors_origins_env: Optional[str] = os.getenv("CORS_ORIGINS", None)
+    cors_origins: list = (
+        cors_origins_env.split(",") if cors_origins_env 
+        else ["http://localhost:5173", "http://localhost:3000", "*"]
+    )
     
     class Config:
         env_file = ".env"

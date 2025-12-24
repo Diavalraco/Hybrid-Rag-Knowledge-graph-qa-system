@@ -91,19 +91,27 @@ app = FastAPI(
 )
 
 # Add CORS middleware
-# Allow all origins for Vercel deployment (or specify your frontend URL)
+# Allow all origins in production (Render/Vercel), or specific frontend URLs
 cors_origins = settings.cors_origins
-if os.getenv("VERCEL"):
-    # On Vercel, allow all origins or add your frontend domain
-    cors_origins = ["*"]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=cors_origins if cors_origins != ["*"] else ["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# In production (Render/Vercel), allow all origins if "*" is in the list
+if "*" in cors_origins or os.getenv("RENDER") or os.getenv("VERCEL"):
+    # Allow all origins in production
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=False,  # Must be False when allow_origins=["*"]
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+else:
+    # In development, use specific origins
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=cors_origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 
 # Dependency injection functions
