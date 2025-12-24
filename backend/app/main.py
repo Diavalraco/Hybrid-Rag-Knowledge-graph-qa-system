@@ -2,6 +2,7 @@
 Main FastAPI application.
 Initializes services and mounts API routes.
 """
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
@@ -90,9 +91,15 @@ app = FastAPI(
 )
 
 # Add CORS middleware
+# Allow all origins for Vercel deployment (or specify your frontend URL)
+cors_origins = settings.cors_origins
+if os.getenv("VERCEL"):
+    # On Vercel, allow all origins or add your frontend domain
+    cors_origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins,
+    allow_origins=cors_origins if cors_origins != ["*"] else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
