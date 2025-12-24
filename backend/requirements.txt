@@ -4,8 +4,9 @@ uvicorn[standard]==0.24.0
 python-multipart==0.0.6
 
 # Data validation
-pydantic==2.5.0
-pydantic-settings==2.1.0
+# Using newer versions with pre-built wheels to avoid Rust compilation issues
+pydantic>=2.8.0
+pydantic-settings>=2.4.0
 
 # Vector database (FAISS)
 # Using latest compatible version (1.7.4 is no longer available on PyPI)
