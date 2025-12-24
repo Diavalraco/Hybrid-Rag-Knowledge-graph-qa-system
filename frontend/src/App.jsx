@@ -37,6 +37,7 @@ function App() {
       </header>
 
       <main className="app-main">
+        <DocumentUpload />
         <QueryBox onQuery={handleQuery} isLoading={loading} />
 
         {error && (
