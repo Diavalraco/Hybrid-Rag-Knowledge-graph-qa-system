@@ -2,6 +2,7 @@ import { useState } from 'react';
 import QueryBox from './components/QueryBox';
 import AnswerBox from './components/AnswerBox';
 import SourceList from './components/SourceList';
+import DocumentUpload from './components/DocumentUpload';
 import { query as queryAPI } from './api';
 
 /**
