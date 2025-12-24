@@ -1,0 +1,10 @@
+[project]
+name = "hybrid-rag-backend"
+version = "1.0.0"
+requires-python = ">=3.11,<3.12"
+description = "Hybrid RAG + Knowledge Graph Question Answering System"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
