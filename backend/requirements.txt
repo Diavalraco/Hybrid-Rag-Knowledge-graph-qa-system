@@ -8,14 +8,10 @@ pydantic==2.5.0
 pydantic-settings==2.1.0
 
 # Vector database (FAISS)
-# WARNING: faiss-cpu==1.7.4 does NOT support Python 3.12
-# Vercel only supports Python 3.12, so FAISS will fail to install
-# Options:
-# 1. Deploy backend on Render (supports Python 3.11) - RECOMMENDED
-# 2. Use a cloud vector DB (Pinecone, Weaviate, Qdrant) instead of FAISS
-# 3. Make FAISS optional and use in-memory vectors (not recommended for production)
-faiss-cpu==1.7.4
-numpy==1.24.3
+# Using latest compatible version (1.7.4 is no longer available on PyPI)
+# Version 1.9.0+ supports Python 3.11
+faiss-cpu>=1.9.0
+numpy>=1.24.3,<2.0.0
 
 # Knowledge Graph (Neo4j)
 neo4j==5.15.0
