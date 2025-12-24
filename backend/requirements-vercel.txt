@@ -1,0 +1,29 @@
+# Requirements for Vercel deployment (Python 3.12)
+# NOTE: FAISS is NOT included as it doesn't support Python 3.12
+# You'll need to use a cloud vector database or deploy on Render instead
+
+# FastAPI and server
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# Data validation
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# Vector database - REMOVED (use cloud vector DB instead)
+# faiss-cpu==1.7.4  # Not compatible with Python 3.12
+numpy>=1.24.3,<2.0.0
+
+# Knowledge Graph (Neo4j)
+neo4j==5.15.0
+
+# HTTP client for API calls
+httpx==0.25.2
+
+# PDF processing
+PyPDF2==3.0.1
+
+# Logging and utilities
+python-dotenv==1.0.0
+
